@@ -6,34 +6,30 @@
 #include "Class.h"
 using namespace std;
 
-//virtual base class
-//base class for all players character types
-
-class Player : public Class{
-
-public:
-
-    string Name;
-    int Health;
-    int Defence;
-    int Attack;
-
-Player();
-void ClassSetup();
-~Player();
+class Player : public Class{    
+    public:
+    
+    Player* choiceChar(Player* ptr,Player ptr2[]);
+    
 };
 
-Player::Player(){
+ Player* Player::choiceChar(Player* ptr,Player ptr2[]){
+    
+    int choice;
+    cout << "Select your character -  " << endl;
+    cout << "press 1 for wizard!" << endl;
+    cin >> choice;
 
-}
-void Player::ClassSetup(){
-    cout << "PLAYER:What is name?: "<<endl;
-    cin >> Name;
-}
-
-Player::~Player(){
-
-}
-
+    switch (choice){
+    case 1:
+        
+        ptr = &ptr2[choice-1]; 
+        return ptr;
+        break;
+    
+    default:
+        break;
+    }
+ }
 
 #endif

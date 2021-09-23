@@ -10,10 +10,32 @@ using namespace std;
 
 class Class{
 
-public:    
+public:
+    string Name;
+    int Health;
+    int Defence;
+    int Attack;  
+
+    void setHealth(int health);
+    void SetDefence(int defence);
+    void setAttack(int attack);  
+    void setName();
 //pure functions 
-    virtual void ClassSetup()=0;
+    //virtual void ClassSetup()=0;
    
 };
 
+    void Class::setHealth(int health){
+        Health=health;
+    }
+    void Class::SetDefence(int defence){
+        Defence=defence;
+    }
+    void Class::setAttack(int attack){
+        Attack=attack;
+    }  
+    void Class::setName(){
+        cout<<"Enter your name: "<<endl;
+        cin >> Name;
+    }
 #endif

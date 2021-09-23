@@ -10,30 +10,16 @@ class Enemy: public Class{
 
 public:
 //base stats for enemys to enherit
-    string Name;
-    string Type;
-    int Health;
-    int Defence;
-    int Attack;
-    
-
-    Enemy();
-    void ClassSetup();
-    ~Enemy();
+   
+    int Difficulty;
+    void SetDifficulty(int difficulty);
 };
 
-Enemy::Enemy(){
-
-}
-void Enemy::ClassSetup(){
-    cout << "What is name?: " <<endl;
-    cin >> Name;
-    cout << "what ememy would you like?: " << endl;
-    cin >> Type;
-}
-
-Enemy::~Enemy(){
-
+void Enemy::SetDifficulty(int difficulty){
+    Difficulty = difficulty;
+    Health = Health*difficulty;
+    Defence = Defence*difficulty;
+    Attack = Attack*difficulty;
 }
 
 #endif

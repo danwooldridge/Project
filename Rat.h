@@ -12,7 +12,9 @@ class Rat: public Enemy
 private:
     /* data */
 public:
+    
     Rat();
+    void ClassSetup();
     void attack();
     ~Rat();
 };
@@ -20,18 +22,22 @@ public:
 #endif
 
 Rat::Rat(){
-    Name = "Null";
-    Health = 50;
-    Attack = 2;
-    Defence = 2;
+    Difficulty = 1;
+    Name = "Rat";
+    Health = 50 * Difficulty;
+    Attack = 2 * Difficulty;
+    Defence = 1 * Difficulty;
 }
-
+void Rat::ClassSetup(){
+    cout << "RAT:What is name?: "<<endl;
+    cin >> Name;
+}
 void Rat::attack(){
 cout << "I am " << Name << endl;    
-cout << "Rat attack!"<<endl;
 cout << "I have "<< Health << " health!" << endl;
 cout << "and " << Attack << " attack points!"<< endl;
 cout << "and " << Defence << " defence points!"<< endl;
+cout << "Rat attack!"<<endl;
 }
 Rat::~Rat()
 {

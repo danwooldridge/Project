@@ -5,30 +5,64 @@
 #include "Enemy.h"
 #include "Player.h"
 
+extern int Dice();
+
 using namespace std;
 
 class Fight
 {
 private:
-    /* data */
+    
 public:
+    string Environment;
+
     Fight();
-    int battle(Player *P, Enemy *E);
+    void battle(Player *P, Enemy *E);
     ~Fight();
 };
 
 Fight::Fight(){
+    Environment = "Default";
 }
-int Fight::battle(Player *P, Enemy *E){
-    while (E->Health > 0)
+void Fight::battle(Player *P, Enemy *E){
+    int imput=0;
+    int roll=0;
+    int eRoll=0;
+    
+    cout<< "FIGHTING IN "<<Environment<<endl;
+    
+    while (E->Health > 0 && P->Health > 0){
+        cout<<"Press 1 to attack!"<<endl;
+        cin>>imput;
+
+        if (imput==1)
         {
-            E->Health = E->Health - P->Attack;
-            P->Health = P->Health - E->Attack;
-            
+           
+            cout << endl<< "you rolled a ";
+            roll=Dice();
+            cout<<endl;
+            cout<<E->Name<<"rolled a ";
+            eRoll=Dice();
+            cout<<endl;
+
+            E->Health = E->Health - P->Attack*(roll)/E->Defence;
+            P->Health = P->Health - E->Attack*(eRoll)/P->Defence;
+            cout << E->Name<< " health is " << E->Health << endl;
+            cout << P->Name<<" health is " << P->Health << endl;
         }
-        cout << "enemy health is " << E->Health<< endl;
-        cout << "player health is " << P->Health<< endl;
-        return P->Health;
+    }
+
+  
+
+    if (E->Health < P->Health)
+    {
+    cout << P->Name << " wins!" << endl;
+
+    }else{
+    cout << E->Name << " wins!" << endl;
+    }
+        
+
 }
 Fight::~Fight(){
 }
