@@ -5,65 +5,67 @@
 #include "Enemy.h"
 #include "Player.h"
 
+// Include dice roll function
 extern int Dice();
-
 using namespace std;
 
-class Fight
-{
-private:
-    
+class Fight{   
 public:
     string Environment;
 
-    Fight();
+    Fight(string environment);
     void battle(Player *P, Enemy *E);
     ~Fight();
 };
 
-Fight::Fight(){
-    Environment = "Default";
+// default constructor takes in string for an environment type
+Fight::Fight(string environment){
+    Environment = environment;
 }
+// Fight function
 void Fight::battle(Player *P, Enemy *E){
     int imput=0;
     int roll=0;
-    int eRoll=0;
+    cout<< "You are fighting a " << E->ClassType << " in " << Environment << endl;
     
-    cout<< "FIGHTING IN "<<Environment<<endl;
-    
+
+// User is able to attack until either hero or enemy has zero health
+// Each attack a dice is rolled to determine the attack of user
+// Attack power is multiplied by dice roll subtracted by the defence of what is being attacked
+// Who ever reaches zero health first loses
+
     while (E->Health > 0 && P->Health > 0){
-        cout<<"Press 1 to attack!"<<endl;
-        cin>>imput;
+        cout << endl;
+        cout <<"Press 1 to attack!"<<endl;
+        cin >> imput;
 
         if (imput==1)
         {
-           
             cout << endl<< "you rolled a ";
+// Roll dice function
             roll=Dice();
-            cout<<endl;
-            cout<<E->Name<<"rolled a ";
-            eRoll=Dice();
-            cout<<endl;
-
-            E->Health = E->Health - P->Attack*(roll)/E->Defence;
-            P->Health = P->Health - E->Attack*(eRoll)/P->Defence;
+            cout << "Doing " << (roll * P->Attack)-(E->Defence) << " damage!" << endl;
+            cout << endl;
+           
+            E->Health = (E->Health + E->Defence) - (P->Attack*(roll));
+            P->Health = (P->Health + P->Defence) - (E->Attack);
             cout << E->Name<< " health is " << E->Health << endl;
             cout << P->Name<<" health is " << P->Health << endl;
+            cout << endl;
         }
     }
-
-  
-
+// If player wins they will recieve the total experience of enemy killed
+// Winners name is displayed at end of fight
     if (E->Health < P->Health)
     {
     cout << P->Name << " wins!" << endl;
+    P->Experience = P->Experience + E->Experience;
 
     }else{
     cout << E->Name << " wins!" << endl;
     }
-        
-
 }
+
 Fight::~Fight(){
 }
 

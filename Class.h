@@ -12,19 +12,21 @@ class Class{
 
 public:
     string Name;
+    string ClassType;
     int Health;
     int Defence;
     int Attack;  
+    int Experience;
 
     void setHealth(int health);
     void SetDefence(int defence);
     void setAttack(int attack);  
     void setName();
-//pure functions 
-    //virtual void ClassSetup()=0;
+// pure function
+    virtual void Unique()=0;
    
 };
-
+// set functions for all primary stats and name
     void Class::setHealth(int health){
         Health=health;
     }
@@ -37,5 +39,6 @@ public:
     void Class::setName(){
         cout<<"Enter your name: "<<endl;
         cin >> Name;
+        cout << endl;
     }
 #endif

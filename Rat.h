@@ -7,38 +7,30 @@
 #include "Enemy.h"
 using namespace std;
 
-class Rat: public Enemy
-{
-private:
-    /* data */
+class Rat: public Enemy{   
 public:
-    
     Rat();
-    void ClassSetup();
-    void attack();
+    void Unique();
     ~Rat();
 };
 
-#endif
-
 Rat::Rat(){
+    ClassType = "Rat";
     Difficulty = 1;
     Name = "Rat";
     Health = 50 * Difficulty;
-    Attack = 2 * Difficulty;
+    Attack = 4 * Difficulty;
     Defence = 1 * Difficulty;
+    Experience = 20 * Difficulty;
 }
-void Rat::ClassSetup(){
-    cout << "RAT:What is name?: "<<endl;
-    cin >> Name;
+
+void Rat::Unique(){
+cout << "I am a enemy " << Name << endl;
+cout << "I have " << Attack <<" Attack, " << Health << " Health, and " << Defence << " Defence!" << endl; 
 }
-void Rat::attack(){
-cout << "I am " << Name << endl;    
-cout << "I have "<< Health << " health!" << endl;
-cout << "and " << Attack << " attack points!"<< endl;
-cout << "and " << Defence << " defence points!"<< endl;
-cout << "Rat attack!"<<endl;
-}
+
 Rat::~Rat()
 {
 }
+
+#endif

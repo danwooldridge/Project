@@ -1,5 +1,5 @@
-#ifndef WIZARD_H
-#define WIZARD_H
+#ifndef RANGER_H
+#define RANGER_H
 
 #include <iostream>
 #include <string>
@@ -7,28 +7,28 @@
 #include "Player.h"
 using namespace std;
 
-class Wizard: public Player{
+class Ranger: public Player{
 public:
-    Wizard();
+    Ranger();
     void Unique();
-    ~Wizard();
+    ~Ranger();
 };
 
-Wizard::Wizard(){
-    ClassType = "Wizard";
+Ranger::Ranger(){
+    ClassType = "Ranger";
     Name = "Null";
     Health = 100;
-    Attack = 10;
-    Defence = 2;
+    Attack = 9;
+    Defence = 3;
     Experience = 0;
 }
 
-void Wizard::Unique(){
+void Ranger::Unique(){
 cout << "I am " << Name << " the " << ClassType << endl;
 cout << "I have " << Attack <<" Attack, " << Health << " Health, and " << Defence << " Defence!" << endl; 
 }
 
-Wizard::~Wizard()
+Ranger::~Ranger()
 {
 }
 
